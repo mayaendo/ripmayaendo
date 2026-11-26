@@ -41,13 +41,13 @@ export function mountGame(root) {
   root.querySelector('[data-farewell]').addEventListener('click', () => setPortrait(true));
   root.querySelector('[data-back]').addEventListener('click', () => setPortrait(false));
 
-  // Copia el link de la web al portapapeles; el botón muestra ✓ un momento.
+  // Copia el link de la web al portapapeles; el botón muestra "link copiado ✓" un momento.
   const share = root.querySelector('[data-share]');
   share.addEventListener('click', async () => {
     const ok = await copyText(SITE_URL);
     if (!ok) return window.prompt('', SITE_URL); // respaldo: el link queda seleccionado para copiar
     const label = share.textContent;
-    share.textContent = '✓';
+    share.textContent = 'link copiado ✓';
     setTimeout(() => (share.textContent = label), 1400);
   });
 
