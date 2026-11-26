@@ -17,9 +17,12 @@ Micrositio de marketing de mayaendo (sitio principal: mayaendo.com). Página ún
 - `scripts/remove-bg.mjs` — quita el fondo blanco de una ilustración: `node scripts/remove-bg.mjs <entrada> public/game/<id>.png`.
 
 ## Flujo para agregar prendas
-1. La ilustración debe tener el mismo lienzo y la misma pose que el maniquí (1086x1448) para que calce encima.
-2. Pasarla por `scripts/remove-bg.mjs` → `public/game/`.
-3. Registrarla en `ITEMS` (`src/game/items.js`) con su capa.
+Las prendas son ilustraciones sueltas (no del tamaño del maniquí); se ubican con coordenadas.
+1. Limpiar y recortar: `node scripts/remove-bg.mjs <entrada> public/game/items/<id>.png`.
+   Pares de zapatos: además `node scripts/split-pair.mjs <id>.png <id>-l.png <id>-r.png`.
+2. Registrar en `ITEMS` (`src/game/items.js`) con capa y `parts: [{ src, cx, top, w, h? }]` en px del lienzo del maniquí.
+   Referencias del maniquí: hombros y≈330, cintura y≈600, caderas x 411–676, muñeca izq. x≈345 y≈715, tobillos y≈1240, pies y≈1330–1410.
+3. Revisar el calce: `node scripts/fit-sheet.mjs <salida.png> id1,id2+id3` genera una hoja con la muñeca vestida.
 - Estilo pixel art: se renderiza con `image-rendering: pixelated`.
 
 ## Convenciones

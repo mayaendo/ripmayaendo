@@ -14,6 +14,7 @@ const { data, info } = await sharp(input).ensureAlpha().raw().toBuffer({ resolve
 const { width: w, height: h } = info;
 const isBg = (i) => {
   const o = i * 4;
+  if (data[o + 3] < 10) return true; // ya transparente
   return 255 - data[o] <= tol && 255 - data[o + 1] <= tol && 255 - data[o + 2] <= tol;
 };
 
@@ -33,5 +34,5 @@ while (stack.length) {
   if (y < h - 1) stack.push(i + w);
 }
 
-await sharp(data, { raw: { width: w, height: h, channels: 4 } }).png().toFile(output);
+await sharp(data, { raw: { width: w, height: h, channels: 4 } }).trim({ threshold: 0 }).png().toFile(output);
 console.log(`${output} — ${w}x${h}`);
