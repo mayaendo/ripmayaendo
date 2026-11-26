@@ -45,9 +45,19 @@ export function mountGame(root) {
   root.querySelector('[data-farewell]').addEventListener('click', () => setPortrait(true));
   root.querySelector('[data-back]').addEventListener('click', () => setPortrait(false));
 
-  // Copia el link de la web al portapapeles; el botón muestra "link copiado ✓" un momento.
+  // En celular abre el menú nativo para compartir (WhatsApp, Instagram, etc.).
+  // En computadora (o si el menú no existe) copia el link; el botón muestra "link copiado ✓".
   const share = root.querySelector('[data-share]');
+  const isPhone = matchMedia('(pointer: coarse)').matches;
   share.addEventListener('click', async () => {
+    if (isPhone && navigator.share) {
+      try {
+        await navigator.share({ title: document.title, url: SITE_URL });
+        return;
+      } catch (err) {
+        if (err.name === 'AbortError') return; // la persona cerró el menú
+      }
+    }
     const ok = await copyText(SITE_URL);
     const label = share.textContent;
     if (!ok) {
