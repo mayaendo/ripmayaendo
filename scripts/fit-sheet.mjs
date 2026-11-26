@@ -5,7 +5,7 @@ import { BASE, ITEMS, LAYERS } from '../src/game/items.js';
 
 const [, , out, list] = process.argv;
 const looks = (list ? list.split(',') : ITEMS.map((i) => i.id)).map((l) => l.split('+'));
-const scale = 0.4;
+const scale = Number(process.env.SCALE ?? 0.4);
 const cw = Math.round(BASE.width * scale), ch = Math.round(BASE.height * scale);
 
 async function render(ids) {

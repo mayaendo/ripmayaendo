@@ -24,7 +24,7 @@ export const ITEMS = [
 
   // Camisas y blusas
   { id: 'top-maroon', layer: 'top', name: 'Blusa guinda', parts: [{ src: `${I}top-maroon.png`, cx: 543, top: 318, w: 330 }] },
-  { id: 'shirt-orange', layer: 'top', name: 'Camisa naranja', thumb: `${I}shirt-orange.png`, parts: [{ src: `${I}shirt-orange-worn.png`, cx: 543, top: 300, w: 380 }] },
+  { id: 'shirt-orange', layer: 'top', name: 'Camisa naranja', thumb: `${I}shirt-orange.png`, parts: [{ src: `${I}shirt-orange-worn.png`, cx: 543, top: 288, w: 432 }] },
 
   // Pantalones
   { id: 'pants-leather', layer: 'bottom', name: 'Pantalón de cuero', parts: [{ src: `${I}pants-leather.png`, cx: 543, top: 595, w: 440, h: 755 }] },
@@ -33,11 +33,11 @@ export const ITEMS = [
 
   // Zapatos
   { id: 'shoes-sneakers', layer: 'shoes', name: 'Zapatillas', thumb: `${I}shoes-sneakers.png`,
-    parts: pair('sneakers', { cx: 420, top: 1330, w: 140 }, { cx: 668, top: 1330, w: 140 }) },
+    parts: pair('sneakers', { cx: 424, top: 1311, w: 172 }, { cx: 664, top: 1311, w: 172 }) },
   { id: 'shoes-boots', layer: 'shoes', name: 'Zapatos negros', thumb: `${I}shoes-boots.png`,
-    parts: pair('boots', { cx: 428, top: 1285, w: 112 }, { cx: 658, top: 1285, w: 112 }) },
+    parts: pair('boots', { cx: 428, top: 1268, w: 126 }, { cx: 658, top: 1268, w: 126 }) },
   { id: 'shoes-oxford', layer: 'shoes', name: 'Zapatos con costura amarilla', thumb: `${I}shoes-oxford.png`,
-    parts: pair('oxford', { cx: 428, top: 1298, w: 125 }, { cx: 660, top: 1298, w: 125 }) },
+    parts: pair('oxford', { cx: 428, top: 1283, w: 140 }, { cx: 660, top: 1283, w: 140 }) },
 
   // Accesorios
   { id: 'belt-studs', layer: 'belt', name: 'Correa con tachas', parts: [{ src: `${I}belt-studs.png`, cx: 543, top: 585, w: 300 }] },
