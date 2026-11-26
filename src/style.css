@@ -1,0 +1,76 @@
+:root {
+  --bg: #f5f0e8;
+  --ink: #1a1a1a;
+  --muted: #7a746b;
+  --accent: #c8102e;
+  --serif: 'Times New Roman', Times, serif;
+  --sans: system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero {
+  min-height: 100svh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 2rem;
+}
+
+.tomb {
+  width: 160px;
+  height: 200px;
+  background: var(--ink);
+  border-radius: 80px 80px 4px 4px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 1rem;
+}
+.tomb__rip { color: var(--bg); font-family: var(--serif); font-size: 2rem; letter-spacing: 0.1em; }
+
+.title { font-family: var(--serif); font-size: clamp(3rem, 12vw, 8rem); font-weight: 400; line-height: 1; }
+.dates { font-family: var(--serif); color: var(--muted); letter-spacing: 0.2em; }
+.tagline { max-width: 32ch; color: var(--muted); }
+
+.btn {
+  margin-top: 1rem;
+  padding: 0.8rem 1.6rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover { background: var(--ink); color: var(--bg); }
+
+.game-section { padding: 4rem 1.5rem; max-width: 960px; margin: 0 auto; }
+.game-section h2 { font-family: var(--serif); font-weight: 400; font-size: 2rem; margin-bottom: 1.5rem; }
+
+.game { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 640px) { .game { grid-template-columns: 1fr; } }
+
+.game__stage {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border: 1.5px dashed var(--muted);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+}
+.game__layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.game__placeholder, .game__empty { color: var(--muted); font-family: var(--serif); font-style: italic; }
+.game__wardrobe { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 0.75rem; align-content: start; }
+.game__item { aspect-ratio: 1; border: 1px solid #ddd6ca; background: #fff; border-radius: 8px; cursor: pointer; padding: 6px; }
+.game__item img { width: 100%; height: 100%; object-fit: contain; }
+
+.footer { text-align: center; padding: 3rem 1rem; font-size: 0.85rem; }
+.footer a { color: var(--muted); }
