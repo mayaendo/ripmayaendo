@@ -8,7 +8,7 @@
 export const BASE = { name: 'Muñeca', src: '/game/body.png', width: 1086, height: 1448 };
 
 // 'tank' = VVDs (van debajo); 'top' = camisas/blusas (van encima, se pueden combinar).
-export const LAYERS = ['bottom', 'shoes', 'tank', 'top', 'belt', 'necklace', 'bracelet'];
+export const LAYERS = ['shoes', 'bottom', 'tank', 'top', 'belt', 'necklace', 'bracelet'];
 
 const I = '/game/items/';
 const pair = (name, l, r) => [
