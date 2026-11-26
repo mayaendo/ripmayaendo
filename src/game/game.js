@@ -3,6 +3,8 @@ import { BASE, LAYERS, ITEMS } from './items.js';
 // Qué prenda está puesta en cada capa (o null).
 const state = Object.fromEntries(LAYERS.map((l) => [l, null]));
 
+const SITE_URL = 'https://rip-mayaendo.com';
+
 const pct = (v, total) => `${(v / total) * 100}%`;
 
 export function mountGame(root) {
@@ -13,7 +15,10 @@ export function mountGame(root) {
         <span class="game__ribbon" aria-hidden="true"></span>
       </div>
       <p class="game__plaque">maya endo</p>
-      <button class="game__back" data-back aria-label="seguir vistiendo">←</button>
+      <div class="game__actions">
+        <button class="game__back" data-back aria-label="seguir vistiendo">←</button>
+        <button class="game__share" data-share>compartir la web</button>
+      </div>
     </div>
     <div class="game__right">
       <div class="game__wardrobe" data-wardrobe></div>
@@ -32,6 +37,16 @@ export function mountGame(root) {
   };
   root.querySelector('[data-farewell]').addEventListener('click', () => setPortrait(true));
   root.querySelector('[data-back]').addEventListener('click', () => setPortrait(false));
+
+  // Copia el link de la web al portapapeles; el botón muestra ✓ un momento.
+  const share = root.querySelector('[data-share]');
+  share.addEventListener('click', async () => {
+    const ok = await copyText(SITE_URL);
+    if (!ok) return window.prompt('', SITE_URL); // respaldo: el link queda seleccionado para copiar
+    const label = share.textContent;
+    share.textContent = '✓';
+    setTimeout(() => (share.textContent = label), 1400);
+  });
 
   wardrobe.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-id]');
@@ -87,4 +102,19 @@ function renderStage(el) {
   const wornIds = LAYERS.filter((l) => state[l]).map((l) => state[l].id);
   const worn = LAYERS.filter((l) => state[l]).flatMap((l) => state[l].parts.map((p) => partImg(resolvePart(p, wornIds))));
   el.innerHTML = base + worn.join('');
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const ta = Object.assign(document.createElement('textarea'), { value: text });
+    ta.style.cssText = 'position:fixed;opacity:0';
+    document.body.append(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    ta.remove();
+    return ok;
+  }
 }
