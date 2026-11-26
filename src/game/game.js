@@ -14,7 +14,7 @@ export function mountGame(root) {
 
 function renderWardrobe(el, root) {
   if (!ITEMS.length) {
-    el.innerHTML = `<p class="game__empty">El clóset está vacío… por ahora.</p>`;
+    el.innerHTML = '';
     return;
   }
   el.innerHTML = ITEMS.map(
