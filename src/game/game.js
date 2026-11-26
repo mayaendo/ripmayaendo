@@ -12,12 +12,12 @@ export function mountGame(root) {
         <div class="game__stage" data-stage style="aspect-ratio: ${BASE.width} / ${BASE.height}"></div>
         <span class="game__ribbon" aria-hidden="true"></span>
       </div>
-      <p class="game__plaque">MAYA ENDO</p>
+      <p class="game__plaque">maya endo</p>
       <button class="game__back" data-back aria-label="seguir vistiendo">←</button>
     </div>
     <div class="game__right">
       <div class="game__wardrobe" data-wardrobe></div>
-      <button class="game__farewell" data-farewell>despedir</button>
+      <button class="game__farewell" data-farewell>adiós</button>
     </div>
   `;
   const stage = root.querySelector('[data-stage]');
@@ -26,18 +26,7 @@ export function mountGame(root) {
   renderStage(stage);
 
   // Retrato de velorio: la muñeca vestida queda enmarcada con lazo de luto y placa.
-  // Cada despedida toma un fondo de tela distinto (colores de la sesión de fotos)
-  // y la placa toma otro color de la misma paleta.
-  const PALETTE = ['#d6281f', '#33628a', '#b9ad2b'];
-  let last = -1;
   const setPortrait = (on) => {
-    if (on) {
-      let i;
-      do i = Math.floor(Math.random() * PALETTE.length); while (i === last);
-      last = i;
-      root.style.setProperty('--photo-bg', PALETTE[i]);
-      root.style.setProperty('--plaque-bg', PALETTE[(i + 1) % PALETTE.length]);
-    }
     root.classList.toggle('is-portrait', on);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
