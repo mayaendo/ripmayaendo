@@ -26,7 +26,18 @@ export function mountGame(root) {
   renderStage(stage);
 
   // Retrato de velorio: la muñeca vestida queda enmarcada con lazo de luto y placa.
+  // Cada despedida toma un fondo de tela distinto (colores de la sesión de fotos)
+  // y la placa toma otro color de la misma paleta.
+  const PALETTE = ['#d6281f', '#33628a', '#b9ad2b'];
+  let last = -1;
   const setPortrait = (on) => {
+    if (on) {
+      let i;
+      do i = Math.floor(Math.random() * PALETTE.length); while (i === last);
+      last = i;
+      root.style.setProperty('--photo-bg', PALETTE[i]);
+      root.style.setProperty('--plaque-bg', PALETTE[(i + 1) % PALETTE.length]);
+    }
     root.classList.toggle('is-portrait', on);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

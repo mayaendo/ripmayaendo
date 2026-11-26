@@ -79,14 +79,30 @@ body {
 .game__plaque, .game__ribbon, .game__back { display: none; }
 
 .is-portrait .game__right { display: none; }
-.is-portrait .game__stage { --h: min(64svh, 720px); background: radial-gradient(ellipse at 50% 40%, #efebe3 0%, #d8d2c5 75%); }
+.is-portrait .game__stage {
+  --h: min(64svh, 720px);
+  /* Tela de color iluminada con flash: centro más claro, bordes en sombra */
+  background:
+    radial-gradient(ellipse 70% 60% at 48% 38%, rgba(255, 255, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.28) 100%),
+    var(--photo-bg, #d6281f);
+}
+/* Grano de película sobre toda la foto */
+.is-portrait .game__stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.9;
+}
 
 .is-portrait .game__frame {
-  padding: 10px;
-  background: #f6f2ea;
+  padding: 12px;
+  background: #f4efe4;
   border: var(--fw) solid #1d1611;
   box-shadow:
-    inset 0 0 0 3px #b48c3c,
     0 0 0 4px #4a3828,
     10px 10px 0 rgba(0, 0, 0, 0.12);
   animation: portrait-in 0.6s ease-out;
@@ -119,10 +135,10 @@ body {
   display: block;
   margin-top: -0.25rem;
   padding: 0.45rem 1.4rem;
-  background: #c9a24a;
-  color: #2b1e08;
-  border: 3px solid #6e5420;
-  box-shadow: inset 0 -3px 0 #9c7a2f, inset 0 3px 0 #e2c47a;
+  background: var(--plaque-bg, #33628a);
+  color: #f4efe4;
+  border: 3px solid #1d1611;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.25), inset 0 3px 0 rgba(255, 255, 255, 0.2), 6px 6px 0 rgba(0, 0, 0, 0.12);
   font-size: clamp(0.85rem, 2.5vw, 1.05rem);
   letter-spacing: 0.3em;
   text-indent: 0.3em;
