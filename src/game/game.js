@@ -45,8 +45,14 @@ export function mountGame(root) {
   const share = root.querySelector('[data-share]');
   share.addEventListener('click', async () => {
     const ok = await copyText(SITE_URL);
-    if (!ok) return window.prompt('', SITE_URL); // respaldo: el link queda seleccionado para copiar
     const label = share.textContent;
+    if (!ok) {
+      // Respaldo si el navegador no deja copiar: mostrar el link seleccionado para copiarlo a mano.
+      share.textContent = SITE_URL.replace('https://', '');
+      getSelection().selectAllChildren(share);
+      setTimeout(() => (share.textContent = label), 6000);
+      return;
+    }
     share.textContent = 'link copiado ✓';
     setTimeout(() => (share.textContent = label), 1400);
   });
