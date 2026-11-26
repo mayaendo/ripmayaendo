@@ -1,6 +1,6 @@
 # rip-mayaendo.com
 
-Micrositio de marketing de mayaendo (sitio principal: mayaendo.com). Página única: título "vísteme para mi funeral" + la muñeca del dress-up, fondo blanco.
+Micrositio de marketing de mayaendo (sitio principal: mayaendo.com). Página única: título "vísteme por última vez" + la muñeca del dress-up, fondo blanco.
 - No agregar textos que la usuaria no haya dado.
 
 ## Stack
