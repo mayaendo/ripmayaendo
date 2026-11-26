@@ -12,7 +12,14 @@ Micrositio de marketing de mayaendo (sitio principal: mayaendo.com). Concepto: "
 - `src/main.js` — entrada; monta el juego.
 - `src/game/items.js` — catálogo de prendas y orden de capas (`LAYERS`).
 - `src/game/game.js` — lógica del dress-up (estado por capa, clóset, escenario).
-- `public/game/` — assets del juego (PNGs con fondo transparente, mismo lienzo para todas las capas para que se alineen).
+- `public/game/` — assets del juego. `body.png` es el maniquí (capa base fija, 1086x1448, pixel art).
+- `scripts/remove-bg.mjs` — quita el fondo blanco de una ilustración: `node scripts/remove-bg.mjs <entrada> public/game/<id>.png`.
+
+## Flujo para agregar prendas
+1. La ilustración debe tener el mismo lienzo y la misma pose que el maniquí (1086x1448) para que calce encima.
+2. Pasarla por `scripts/remove-bg.mjs` → `public/game/`.
+3. Registrarla en `ITEMS` (`src/game/items.js`) con su capa.
+- Estilo pixel art: se renderiza con `image-rendering: pixelated`.
 
 ## Convenciones
 - Mantenerlo simple y estático; nada de backend salvo que se pida.

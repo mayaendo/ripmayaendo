@@ -1,15 +1,14 @@
-import { LAYERS, ITEMS } from './items.js';
+import { BASE, LAYERS, ITEMS } from './items.js';
 
 // Estado: qué item está puesto en cada capa (o null).
 const state = Object.fromEntries(LAYERS.map((l) => [l, null]));
 
 export function mountGame(root) {
   root.innerHTML = `
-    <div class="game__stage" data-stage>
-      <div class="game__placeholder">el maniquí va aquí</div>
-    </div>
+    <div class="game__stage" data-stage style="aspect-ratio: ${BASE.width} / ${BASE.height}"></div>
     <div class="game__wardrobe" data-wardrobe></div>
   `;
+  renderStage(root.querySelector('[data-stage]'));
   renderWardrobe(root.querySelector('[data-wardrobe]'), root);
 }
 
@@ -31,7 +30,8 @@ function renderWardrobe(el, root) {
 }
 
 function renderStage(el) {
-  el.innerHTML = LAYERS.filter((l) => state[l])
+  const base = `<img class="game__layer" src="${BASE.src}" alt="${BASE.name}">`;
+  el.innerHTML = base + LAYERS.filter((l) => state[l])
     .map((l) => `<img class="game__layer" src="${state[l].src}" alt="">`)
     .join('');
 }
