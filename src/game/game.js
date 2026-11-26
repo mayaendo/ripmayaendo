@@ -31,7 +31,10 @@ export function mountGame(root) {
   renderStage(stage);
 
   // Retrato de velorio: la muñeca vestida queda enmarcada con lazo de luto y placa.
+  const title = document.querySelector('.title');
+  const titleText = title?.textContent;
   const setPortrait = (on) => {
+    if (title) title.textContent = on ? 'adiós' : titleText;
     root.classList.toggle('is-portrait', on);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
