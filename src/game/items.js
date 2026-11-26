@@ -24,7 +24,7 @@ export const ITEMS = [
 
   // Camisas y blusas
   { id: 'top-maroon', layer: 'top', name: 'Blusa guinda', parts: [{ src: `${I}top-maroon.png`, cx: 543, top: 318, w: 330 }] },
-  { id: 'shirt-orange', layer: 'top', name: 'Camisa naranja', parts: [{ src: `${I}shirt-orange.png`, cx: 543, top: 300, w: 380 }] },
+  { id: 'shirt-orange', layer: 'top', name: 'Camisa naranja', thumb: `${I}shirt-orange.png`, parts: [{ src: `${I}shirt-orange-worn.png`, cx: 543, top: 300, w: 380 }] },
 
   // Pantalones
   { id: 'pants-leather', layer: 'bottom', name: 'Pantalón de cuero', parts: [{ src: `${I}pants-leather.png`, cx: 543, top: 595, w: 440, h: 815 }] },

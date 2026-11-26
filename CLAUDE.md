@@ -19,6 +19,7 @@ Micrositio de marketing de mayaendo (sitio principal: mayaendo.com). Página ún
 ## Flujo para agregar prendas
 Las prendas son ilustraciones sueltas (no del tamaño del maniquí); se ubican con coordenadas.
 1. Limpiar y recortar: `node scripts/remove-bg.mjs <entrada> public/game/items/<id>.png`.
+   Si la prenda puesta necesita otra versión (p. ej. cuello abierto), usar `thumb` para el botón y `parts` para la muñeca.
    Pares de zapatos: además `node scripts/split-pair.mjs <id>.png <id>-l.png <id>-r.png`.
 2. Capas: 'tank' = VVDs (debajo), 'top' = camisas/blusas (encima); se combinan.
    Registrar en `ITEMS` (`src/game/items.js`) con capa y `parts: [{ src, cx, top, w, h? }]` en px del lienzo del maniquí.
