@@ -5,6 +5,9 @@ const state = Object.fromEntries(LAYERS.map((l) => [l, null]));
 
 const SITE_URL = 'https://rip-mayaendo.com';
 
+// Miniatura liviana del clóset (generada por scripts/optimize-images.mjs).
+const thumbSrc = (it) => (it.thumb ?? it.parts[0].src).replace('/game/items/', '/game/thumbs/');
+
 const pct = (v, total) => `${(v / total) * 100}%`;
 
 export function mountGame(root) {
@@ -29,6 +32,7 @@ export function mountGame(root) {
   const wardrobe = root.querySelector('[data-wardrobe]');
   renderWardrobe(wardrobe);
   renderStage(stage);
+  preloadWornImages();
 
   // Retrato de velorio: la muñeca vestida queda enmarcada con lazo de luto y placa.
   const title = document.querySelector('.title');
@@ -75,7 +79,7 @@ function renderWardrobe(el) {
     return `<div class="game__group">${items
       .map(
         (it) => `<button class="game__item" data-id="${it.id}" aria-label="${it.name}" aria-pressed="false">
-          <img src="${it.thumb ?? it.parts[0].src}" alt="">
+          <img src="${thumbSrc(it)}" alt="" width="64" height="64" decoding="async">
         </button>`
       )
       .join('')}</div>`;
@@ -96,7 +100,7 @@ function partImg(p) {
     `width:${pct(p.w, BASE.width)}`,
     p.h ? `height:${pct(p.h, BASE.height)}` : '',
   ].join(';');
-  return `<img class="game__part" src="${p.src}" style="${style}" alt="">`;
+  return `<img class="game__part" src="${p.src}" style="${style}" alt="" decoding="async">`;
 }
 
 // Si una parte tiene `with: { [idDeOtraPrenda]: {...} }`, ese calce reemplaza al normal
@@ -106,8 +110,20 @@ export function resolvePart(p, wornIds) {
   return id ? { ...p, ...p.with[id] } : p;
 }
 
+// Descarga en segundo plano las prendas, para que al hacer clic aparezcan al instante.
+function preloadWornImages() {
+  const run = () => ITEMS.flatMap((i) => i.parts).forEach((p) => {
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = p.src;
+  });
+  if (document.readyState === 'complete') setTimeout(run, 0);
+  else addEventListener('load', run, { once: true });
+}
+
 function renderStage(el) {
-  const base = `<img class="game__layer" src="${BASE.src}" alt="${BASE.name}">`;
+  const base = `<img class="game__layer" src="${BASE.src}" alt="${BASE.name}" fetchpriority="high">
+    <span class="game__signature" aria-hidden="true">maya endo</span>`;
   const wornIds = LAYERS.filter((l) => state[l]).map((l) => state[l].id);
   const worn = LAYERS.filter((l) => state[l]).flatMap((l) => state[l].parts.map((p) => partImg(resolvePart(p, wornIds))));
   el.innerHTML = base + worn.join('');

@@ -75,6 +75,19 @@ body {
 }
 .game__farewell:hover, .game__back:hover { background: var(--ink); color: #fff; }
 
+/* Firma junto al pie derecho (solo mientras se viste) */
+.game__signature {
+  position: absolute;
+  left: 71%;
+  top: 93%;
+  z-index: 1;
+  font-size: clamp(0.7rem, 1.7svh, 0.95rem);
+  white-space: nowrap;
+  color: var(--ink);
+  pointer-events: none;
+}
+.is-portrait .game__signature { display: none; }
+
 /* --- Retrato de velorio --- */
 .game__plaque, .game__ribbon, .game__back { display: none; }
 

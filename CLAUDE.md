@@ -13,12 +13,13 @@ Micrositio de marketing de mayaendo (sitio principal: mayaendo.com). Página ún
 - `src/main.js` — entrada; monta el juego.
 - `src/game/items.js` — catálogo de prendas y orden de capas (`LAYERS`).
 - `src/game/game.js` — lógica del dress-up (estado por capa, clóset, escenario).
-- `public/game/` — assets del juego. `body.png` es el maniquí (capa base fija, 1086x1448, pixel art).
+- `public/game/` — assets del juego en WebP (generados desde `art/`). `body.webp` es el maniquí (capa base fija, 1086x1448, pixel art).
 - `scripts/remove-bg.mjs` — quita el fondo blanco de una ilustración: `node scripts/remove-bg.mjs <entrada> public/game/<id>.png`.
 
 ## Flujo para agregar prendas
 Las prendas son ilustraciones sueltas (no del tamaño del maniquí); se ubican con coordenadas.
-1. Limpiar y recortar: `node scripts/remove-bg.mjs <entrada> public/game/items/<id>.png`.
+1. Limpiar y recortar: `node scripts/remove-bg.mjs <entrada> art/items/<id>.png` (originales PNG en `art/`).
+   Luego `node scripts/optimize-images.mjs` genera los WebP de `public/game/items` y las miniaturas de `public/game/thumbs`.
    Calce según otra prenda: en una part, `with: { <idPrenda>: { top, w, ... } }`.
    Si la prenda puesta necesita otra versión (p. ej. cuello abierto), usar `thumb` para el botón y `parts` para la muñeca.
    Pares de zapatos: además `node scripts/split-pair.mjs <id>.png <id>-l.png <id>-r.png`.
