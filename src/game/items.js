@@ -27,9 +27,9 @@ export const ITEMS = [
   { id: 'shirt-orange', layer: 'top', name: 'Camisa naranja', thumb: `${I}shirt-orange.png`, parts: [{ src: `${I}shirt-orange-worn.png`, cx: 543, top: 300, w: 380 }] },
 
   // Pantalones
-  { id: 'pants-leather', layer: 'bottom', name: 'Pantalón de cuero', parts: [{ src: `${I}pants-leather.png`, cx: 543, top: 595, w: 440, h: 815 }] },
+  { id: 'pants-leather', layer: 'bottom', name: 'Pantalón de cuero', parts: [{ src: `${I}pants-leather.png`, cx: 543, top: 595, w: 440, h: 755 }] },
   { id: 'pants-pinstripe', layer: 'bottom', name: 'Pantalón a rayas', parts: [{ src: `${I}pants-pinstripe.png`, cx: 543, top: 595, w: 345, h: 765 }] },
-  { id: 'pants-pink', layer: 'bottom', name: 'Pantalón rosado', parts: [{ src: `${I}pants-pink.png`, cx: 543, top: 595, w: 450, h: 800 }] },
+  { id: 'pants-pink', layer: 'bottom', name: 'Pantalón rosado', parts: [{ src: `${I}pants-pink.png`, cx: 543, top: 595, w: 450, h: 745 }] },
 
   // Zapatos
   { id: 'shoes-sneakers', layer: 'shoes', name: 'Zapatillas', thumb: `${I}shoes-sneakers.png`,
