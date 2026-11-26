@@ -7,13 +7,31 @@ const pct = (v, total) => `${(v / total) * 100}%`;
 
 export function mountGame(root) {
   root.innerHTML = `
-    <div class="game__stage" data-stage style="aspect-ratio: ${BASE.width} / ${BASE.height}"></div>
-    <div class="game__wardrobe" data-wardrobe></div>
+    <div class="game__left">
+      <div class="game__frame">
+        <div class="game__stage" data-stage style="aspect-ratio: ${BASE.width} / ${BASE.height}"></div>
+        <span class="game__ribbon" aria-hidden="true"></span>
+      </div>
+      <p class="game__plaque">RIP MAYA ENDO</p>
+      <button class="game__back" data-back aria-label="seguir vistiendo">←</button>
+    </div>
+    <div class="game__right">
+      <div class="game__wardrobe" data-wardrobe></div>
+      <button class="game__farewell" data-farewell>despedir</button>
+    </div>
   `;
   const stage = root.querySelector('[data-stage]');
   const wardrobe = root.querySelector('[data-wardrobe]');
   renderWardrobe(wardrobe);
   renderStage(stage);
+
+  // Retrato de velorio: la muñeca vestida queda enmarcada con lazo de luto y placa.
+  const setPortrait = (on) => {
+    root.classList.toggle('is-portrait', on);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  root.querySelector('[data-farewell]').addEventListener('click', () => setPortrait(true));
+  root.querySelector('[data-back]').addEventListener('click', () => setPortrait(false));
 
   wardrobe.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-id]');
