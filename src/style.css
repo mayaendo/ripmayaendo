@@ -108,8 +108,14 @@ body {
   left: -30%;
   width: 160%;
   height: 22%;
-  /* Cinta en franjas con los colores de la sesión de fotos */
-  background: linear-gradient(to bottom, #d6281f 0 33.34%, #b9ad2b 33.34% 66.67%, #33628a 66.67% 100%);
+  /* Cinta de polka dots con los colores de la sesión de fotos */
+  background-color: #f4efe4;
+  background-image:
+    radial-gradient(circle 3.4px, #d6281f 92%, transparent),
+    radial-gradient(circle 3.4px, #b9ad2b 92%, transparent),
+    radial-gradient(circle 3.4px, #33628a 92%, transparent);
+  background-size: 30px 14px;
+  background-position: 0 0, 10px 7px, 20px 0;
   transform: rotate(45deg);
   box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.35) inset;
 }
