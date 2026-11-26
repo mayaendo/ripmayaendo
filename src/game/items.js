@@ -7,7 +7,8 @@
 
 export const BASE = { name: 'Muñeca', src: '/game/body.png', width: 1086, height: 1448 };
 
-export const LAYERS = ['bottom', 'shoes', 'top', 'belt', 'necklace', 'bracelet'];
+// 'tank' = VVDs (van debajo); 'top' = camisas/blusas (van encima, se pueden combinar).
+export const LAYERS = ['bottom', 'shoes', 'tank', 'top', 'belt', 'necklace', 'bracelet'];
 
 const I = '/game/items/';
 const pair = (name, l, r) => [
@@ -16,10 +17,12 @@ const pair = (name, l, r) => [
 ];
 
 export const ITEMS = [
-  // Partes de arriba
-  { id: 'top-cream', layer: 'top', name: 'Top crema', parts: [{ src: `${I}top-cream.png`, cx: 543, top: 328, w: 222 }] },
-  { id: 'top-pink', layer: 'top', name: 'Top rosado', parts: [{ src: `${I}top-pink.png`, cx: 543, top: 326, w: 222 }] },
-  { id: 'top-doer', layer: 'top', name: 'Top amarillo DOER', parts: [{ src: `${I}top-doer.png`, cx: 543, top: 322, w: 232 }] },
+  // VVDs
+  { id: 'top-cream', layer: 'tank', name: 'Top crema', parts: [{ src: `${I}top-cream.png`, cx: 543, top: 328, w: 222 }] },
+  { id: 'top-pink', layer: 'tank', name: 'Top rosado', parts: [{ src: `${I}top-pink.png`, cx: 543, top: 326, w: 222 }] },
+  { id: 'top-doer', layer: 'tank', name: 'Top amarillo DOER', parts: [{ src: `${I}top-doer.png`, cx: 543, top: 322, w: 232 }] },
+
+  // Camisas y blusas
   { id: 'top-maroon', layer: 'top', name: 'Blusa guinda', parts: [{ src: `${I}top-maroon.png`, cx: 543, top: 318, w: 330 }] },
   { id: 'shirt-orange', layer: 'top', name: 'Camisa naranja', parts: [{ src: `${I}shirt-orange.png`, cx: 543, top: 300, w: 380 }] },
 
@@ -33,6 +36,8 @@ export const ITEMS = [
     parts: pair('sneakers', { cx: 420, top: 1330, w: 140 }, { cx: 668, top: 1330, w: 140 }) },
   { id: 'shoes-boots', layer: 'shoes', name: 'Zapatos negros', thumb: `${I}shoes-boots.png`,
     parts: pair('boots', { cx: 428, top: 1285, w: 112 }, { cx: 658, top: 1285, w: 112 }) },
+  { id: 'shoes-oxford', layer: 'shoes', name: 'Zapatos con costura amarilla', thumb: `${I}shoes-oxford.png`,
+    parts: pair('oxford', { cx: 428, top: 1298, w: 125 }, { cx: 660, top: 1298, w: 125 }) },
 
   // Accesorios
   { id: 'belt-studs', layer: 'belt', name: 'Correa con tachas', parts: [{ src: `${I}belt-studs.png`, cx: 543, top: 585, w: 300 }] },
