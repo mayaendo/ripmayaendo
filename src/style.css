@@ -108,9 +108,10 @@ body {
   left: -30%;
   width: 160%;
   height: 22%;
-  background: #0b0b0b;
+  /* Cinta en franjas con los colores de la sesión de fotos */
+  background: linear-gradient(to bottom, #d6281f 0 33.34%, #b9ad2b 33.34% 66.67%, #33628a 66.67% 100%);
   transform: rotate(45deg);
-  box-shadow: 0 0 0 2px #2a2a2a inset;
+  box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.35) inset;
 }
 
 .is-portrait .game__plaque {
