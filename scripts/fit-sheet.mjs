@@ -2,6 +2,7 @@
 // Uso: node scripts/fit-sheet.mjs <salida.png> [id1,id2,...]  (combos con '+': top-cream+pants-pink)
 import sharp from 'sharp';
 import { BASE, ITEMS, LAYERS } from '../src/game/items.js';
+import { resolvePart } from '../src/game/game.js';
 
 const [, , out, list] = process.argv;
 const looks = (list ? list.split(',') : ITEMS.map((i) => i.id)).map((l) => l.split('+'));
@@ -11,7 +12,8 @@ const cw = Math.round(BASE.width * scale), ch = Math.round(BASE.height * scale);
 async function render(ids) {
   const items = ids.map((id) => ITEMS.find((i) => i.id === id)).sort((a, b) => LAYERS.indexOf(a.layer) - LAYERS.indexOf(b.layer));
   const comps = [];
-  for (const it of items) for (const p of it.parts) {
+  for (const it of items) for (const p0 of it.parts) {
+    const p = resolvePart(p0, ids);
     const src = 'public' + p.src;
     const m = await sharp(src).metadata();
     const h = p.h ?? (p.w * m.height) / m.width;

@@ -40,7 +40,8 @@ export const ITEMS = [
     parts: pair('oxford', { cx: 428, top: 1283, w: 140 }, { cx: 660, top: 1283, w: 140 }) },
 
   // Accesorios
-  { id: 'belt-studs', layer: 'belt', name: 'Correa con tachas', thumb: `${I}belt-studs.png`, parts: [{ src: `${I}belt-studs-worn.png`, cx: 543, top: 608, w: 262 }] },
+  { id: 'belt-studs', layer: 'belt', name: 'Correa con tachas', thumb: `${I}belt-studs.png`, parts: [{ src: `${I}belt-studs-worn.png`, cx: 543, top: 614, w: 236,
+      with: { 'pants-leather': { top: 608, w: 262 } } }] },
   { id: 'necklace-spiral', layer: 'necklace', name: 'Collar espiral', parts: [{ src: `${I}necklace-spiral.png`, cx: 545, top: 300, w: 110 }] },
   { id: 'choker', layer: 'necklace', name: 'Choker cobrizo', parts: [{ src: `${I}choker.png`, cx: 543, top: 296, w: 96 }] },
 ];

@@ -57,8 +57,16 @@ function partImg(p) {
   return `<img class="game__part" src="${p.src}" style="${style}" alt="">`;
 }
 
+// Si una parte tiene `with: { [idDeOtraPrenda]: {...} }`, ese calce reemplaza al normal
+// cuando esa otra prenda está puesta (p. ej. la correa sobre el pantalón de cuero).
+export function resolvePart(p, wornIds) {
+  const id = p.with && Object.keys(p.with).find((k) => wornIds.includes(k));
+  return id ? { ...p, ...p.with[id] } : p;
+}
+
 function renderStage(el) {
   const base = `<img class="game__layer" src="${BASE.src}" alt="${BASE.name}">`;
-  const worn = LAYERS.filter((l) => state[l]).flatMap((l) => state[l].parts.map(partImg));
+  const wornIds = LAYERS.filter((l) => state[l]).map((l) => state[l].id);
+  const worn = LAYERS.filter((l) => state[l]).flatMap((l) => state[l].parts.map((p) => partImg(resolvePart(p, wornIds))));
   el.innerHTML = base + worn.join('');
 }
