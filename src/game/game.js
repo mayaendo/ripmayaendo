@@ -12,7 +12,7 @@ export function mountGame(root) {
         <div class="game__stage" data-stage style="aspect-ratio: ${BASE.width} / ${BASE.height}"></div>
         <span class="game__ribbon" aria-hidden="true"></span>
       </div>
-      <p class="game__plaque">RIP MAYA ENDO</p>
+      <p class="game__plaque">MAYA ENDO</p>
       <button class="game__back" data-back aria-label="seguir vistiendo">←</button>
     </div>
     <div class="game__right">
