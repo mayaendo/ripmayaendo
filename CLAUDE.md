@@ -23,7 +23,7 @@ Las prendas son ilustraciones sueltas (no del tamaño del maniquí); se ubican c
    Pares de zapatos: además `node scripts/split-pair.mjs <id>.png <id>-l.png <id>-r.png`.
 2. Capas: 'tank' = VVDs (debajo), 'top' = camisas/blusas (encima); se combinan.
    Registrar en `ITEMS` (`src/game/items.js`) con capa y `parts: [{ src, cx, top, w, h? }]` en px del lienzo del maniquí.
-   Referencias del maniquí: hombros y≈330, cintura y≈600, caderas x 411–676, muñeca izq. x≈345 y≈715, tobillos y≈1240, pies y≈1330–1410.
+   Referencias del maniquí: cuello y≈296–330, hombros y≈330, cintura y≈600, caderas x 411–676, muñeca izq. x≈345 y≈715, tobillos y≈1240, pies y≈1330–1410.
 3. Revisar el calce: `node scripts/fit-sheet.mjs <salida.png> id1,id2+id3` genera una hoja con la muñeca vestida.
 - Estilo pixel art: se renderiza con `image-rendering: pixelated`.
 

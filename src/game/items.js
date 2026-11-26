@@ -8,7 +8,7 @@
 export const BASE = { name: 'Muñeca', src: '/game/body.png', width: 1086, height: 1448 };
 
 // 'tank' = VVDs (van debajo); 'top' = camisas/blusas (van encima, se pueden combinar).
-export const LAYERS = ['shoes', 'bottom', 'tank', 'top', 'belt', 'necklace', 'bracelet'];
+export const LAYERS = ['shoes', 'bottom', 'tank', 'top', 'belt', 'necklace'];
 
 const I = '/game/items/';
 const pair = (name, l, r) => [
@@ -42,5 +42,5 @@ export const ITEMS = [
   // Accesorios
   { id: 'belt-studs', layer: 'belt', name: 'Correa con tachas', parts: [{ src: `${I}belt-studs.png`, cx: 543, top: 585, w: 300 }] },
   { id: 'necklace-spiral', layer: 'necklace', name: 'Collar espiral', parts: [{ src: `${I}necklace-spiral.png`, cx: 545, top: 300, w: 110 }] },
-  { id: 'bracelet', layer: 'bracelet', name: 'Pulsera', parts: [{ src: `${I}bracelet.png`, cx: 345, top: 700, w: 62 }] },
+  { id: 'choker', layer: 'necklace', name: 'Choker cobrizo', parts: [{ src: `${I}choker.png`, cx: 543, top: 296, w: 96 }] },
 ];
